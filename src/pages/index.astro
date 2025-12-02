@@ -1,25 +1,118 @@
+﻿---
+import "../styles/global.css";
+import { CommandMenu } from "@/components/CommandMenu";
+import BreadcrumbDemo from "@/components/BreadcrumbDemo";
+import HeaderRow from "@/components/HeaderRow";
+import TextPager from "@/components/TextPager";
+import DotBackgroundBg from "@/components/DotBackgroundBg";
+import { ModeToggle } from "@/components/ModeToggle";
+import LanguageToggle from "@/components/LanguageToggle";
 ---
-import '../styles/global.css';
-// Component Imports
-import Button from '../components/Button.astro';
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
----
+<!-- Preferencias iniciales: idioma + tema -->
+<script is:inline>
+  // Idioma inicial (localStorage -> navigator)
+  (function () {
+    try {
+      const saved = localStorage.getItem('lang');
+      const lang = (saved === 'en' || saved === 'es')
+        ? saved
+        : (navigator.language || '').toLowerCase().startsWith('es') ? 'es' : 'en';
+      document.documentElement.setAttribute('lang', lang);
+    } catch {}
+  })();
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
+  // Tema inicial (localStorage -> prefers-color-scheme)
+  (function () {
+    const getThemePreference = () => {
+      try {
+        const saved = localStorage.getItem('theme');
+        if (saved) return saved;
+      } catch {}
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    const isDark = getThemePreference() === 'dark';
+    document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
 
-	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
-		</div>
-	</body>
+    // Observa cambios para persistir
+    try {
+      const observer = new MutationObserver(() => {
+        const isDarkNow = document.documentElement.classList.contains('dark');
+        localStorage.setItem('theme', isDarkNow ? 'dark' : 'light');
+      });
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    } catch {}
+  })();
+</script>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Armando — Front-End Developer</title>
+  </head>
+
+  <body class="min-h-screen relative pb-24 bg-white text-black dark:bg-black dark:text-white">
+    <!-- Fondo -->
+    <DotBackgroundBg client:only="react" />
+
+    <!-- Command Palette (⌘/Ctrl + K) -->
+    <CommandMenu client:only="react" />
+
+    <!-- Top bar: breadcrumb + toggles -->
+    <div class="flex items-center justify-between px-12 mt-4 gap-2">
+      <BreadcrumbDemo client:only="react" />
+      <div class="flex items-center gap-2">
+        <LanguageToggle client:only="react" />
+        <ModeToggle client:load />
+      </div>
+    </div>
+
+    <!-- Header con avatar + nombre -->
+    <HeaderRow client:only="react" />
+
+    <!-- Subcopy (i18n por script para no rehidratar) -->
+    <p class="mx-12 mt-6 text-base" id="hero-sub">
+      Desarrollo software con foco en eficiencia, diseño y resultados.
+    </p>
+
+    <!-- Contenido paginado: Inicio / Proyectos / Contacto -->
+    <TextPager client:only="react" />
+
+    <!-- Botón flotante para abrir Command -->
+    <button
+      class="fixed bottom-4 right-4 rounded-md border px-3 py-2 text-sm hover:bg-muted/50"
+      onclick="window.dispatchEvent(new Event('command:open'))">
+      Search (⌘/Ctrl + K)
+    </button>
+
+    <!-- Sincroniza el subtítulo con el idioma -->
+    <script is:inline>
+      (function () {
+        const dict = {
+          es: "Desarrollo software con foco en eficiencia, diseño y resultados.",
+          en: "I build software focused on efficiency, design, and measurable results."
+        };
+        const el = document.getElementById('hero-sub');
+        const apply = (lang) => { if (el) el.textContent = dict[lang] || dict.es; };
+
+        // set inicial
+        try {
+          const saved = localStorage.getItem('lang');
+          const lang = (saved === 'en' || saved === 'es')
+            ? saved
+            : (navigator.language || '').toLowerCase().startsWith('es') ? 'es' : 'en';
+          apply(lang);
+        } catch { apply('es'); }
+
+        // escucha cambios desde LanguageToggle (lang:changed)
+        window.addEventListener('lang:changed', (e) => {
+          const lang = e?.detail?.lang || 'es';
+          apply(lang);
+        });
+      })();
+    </script>
+  </body>
 </html>
