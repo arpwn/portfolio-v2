@@ -3,6 +3,8 @@ import "../styles/global.css";
 import { CommandMenu } from "@/components/CommandMenu";
 import BreadcrumbDemo from "@/components/BreadcrumbDemo";
 import HeaderRow from "@/components/HeaderRow";
+import SeasonalHeader from "@/components/SeasonalHeader";
+import SeasonalHeaderPro from "@/components/SeasonalHeaderPro";
 import TextPager from "@/components/TextPager";
 import DotBackgroundBg from "@/components/DotBackgroundBg";
 import { ModeToggle } from "@/components/ModeToggle";
@@ -71,7 +73,11 @@ import LanguageToggle from "@/components/LanguageToggle";
     </div>
 
     <!-- Header con avatar + nombre -->
-    <HeaderRow client:only="react" />
+    <!-- <HeaderRow client:only="react" /> -->
+
+    <!-- <SeasonalHeader client:only="react" /> -->
+
+    <SeasonalHeaderPro client:only="react" />
 
     <!-- Subcopy (i18n por script para no rehidratar) -->
     <p class="mx-12 mt-6 text-base" id="hero-sub">

@@ -118,3 +118,42 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Nieve visible en ambos temas */
+.snow-effect {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(var(--snow-color) 1.2px, transparent 1.2px),
+    radial-gradient(var(--snow-color) 1.2px, transparent 1.2px);
+  background-size: 22px 22px, 28px 28px;
+  background-position: 0 0, 12px 12px;
+  animation: snowFall 12s linear infinite;
+  z-index: 2;
+  opacity: var(--snow-opacity);
+  filter: drop-shadow(0 0 2px var(--snow-glow));
+}
+
+/* Light mode → nieve más gris con glow oscuro */
+:root {
+  --snow-color: rgba(120, 120, 120, 0.9);
+  --snow-opacity: 0.85;
+  --snow-glow: rgba(0, 0, 0, 0.4); /* resalta nieve */
+}
+
+/* Dark mode → nieve blanca brillante */
+.dark {
+  --snow-color: rgba(255, 255, 255, 0.95);
+  --snow-opacity: 0.9;
+  --snow-glow: rgba(255, 255, 255, 0.6);
+}
+
+@keyframes snowFall {
+  from {
+    background-position: 0 0, 12px -30px;
+  }
+  to {
+    background-position: 0 30px, 12px 0;
+  }
+}
