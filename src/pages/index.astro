@@ -79,10 +79,23 @@ import LanguageToggle from "@/components/LanguageToggle";
 
     <SeasonalHeaderPro client:only="react" />
 
-    <!-- Subcopy (i18n por script para no rehidratar) -->
-    <p class="mx-12 mt-6 text-base" id="hero-sub">
-      Desarrollo software con foco en eficiencia, diseño y resultados.
+    <h1 class="mx-12 mt-10 text-4xl md:text-5xl font-bold
+           bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400
+           bg-clip-text text-transparent
+           transition-all duration-300 hover:tracking-wide">
+      Front-End Developer
+    </h1>
+
+    <p
+      id="hero-sub"
+      class="mx-12 mt-2 text-muted-foreground text-lg max-w-xl"
+    >
+
+    <p class="mx-12 mt-3 text-sm text-muted-foreground tracking-wide">
+      React · Angular · TypeScript
     </p>
+
+    <p class="mx-12 mt-6 text-base" id="hero-sub"></p>
 
     <!-- Contenido paginado: Inicio / Proyectos / Contacto -->
     <TextPager client:only="react" />
@@ -95,30 +108,40 @@ import LanguageToggle from "@/components/LanguageToggle";
     </button>
 
     <!-- Sincroniza el subtítulo con el idioma -->
-    <script is:inline>
-      (function () {
-        const dict = {
-          es: "Desarrollo software con foco en eficiencia, diseño y resultados.",
-          en: "I build software focused on efficiency, design, and measurable results."
-        };
-        const el = document.getElementById('hero-sub');
-        const apply = (lang) => { if (el) el.textContent = dict[lang] || dict.es; };
+    <footer class="mt-16 py-6 text-center text-sm opacity-60" id="site-footer">
+  © {new Date().getFullYear()} Armando
+</footer>
 
-        // set inicial
-        try {
-          const saved = localStorage.getItem('lang');
-          const lang = (saved === 'en' || saved === 'es')
-            ? saved
-            : (navigator.language || '').toLowerCase().startsWith('es') ? 'es' : 'en';
-          apply(lang);
-        } catch { apply('es'); }
+<script is:inline>
+  (function () {
+    const dict = {
+      es: "Desarrollo interfaces modernas con foco en claridad, eficiencia y código mantenible.",
+      en: "I build modern interfaces focused on clarity, efficiency, and maintainable code."
+    };
 
-        // escucha cambios desde LanguageToggle (lang:changed)
-        window.addEventListener('lang:changed', (e) => {
-          const lang = e?.detail?.lang || 'es';
-          apply(lang);
-        });
-      })();
-    </script>
+    const el = document.getElementById("hero-sub");
+    if (!el) return;
+
+    function getLang() {
+      try {
+        const saved = localStorage.getItem("lang");
+        if (saved === "es" || saved === "en") return saved;
+      } catch {}
+      return (navigator.language || "").startsWith("es") ? "es" : "en";
+    }
+
+    function apply(lang) {
+      el.textContent = dict[lang] || dict.es;
+    }
+
+    // inicial
+    apply(getLang());
+
+    // escuchar cambios
+    window.addEventListener("lang:changed", (e) => {
+      apply(e?.detail?.lang || getLang());
+    });
+  })();
+</script>
   </body>
 </html>

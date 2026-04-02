@@ -54,6 +54,9 @@ export default function TextPager() {
           onChange={(p: number) => setPage(p)}
         />
       </div>
+      <footer className="mt-16 py-6 text-center text-sm opacity-60">
+        © {new Date().getFullYear()} Armando
+      </footer>
     </div>
   );
 }
