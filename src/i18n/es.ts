@@ -15,4 +15,9 @@ export default {
   // faq_q6: "¿Cómo empezamos?",
   // faq_a6: "1) Objetivo + métrica · 2) Mini-roadmap y MVP · 3) Entregas semanales con demo viva y tablero compartido.",
   nav: ["Inicio", "Proyectos", "Contacto"],
+  card_title: "Información Rápida",
+  card_location: "México / Remoto",
+  card_status: "Disponible para trabajar",
+  card_cv: "Descargar CV",
+  card_cv_url: "/Jesu_s_Armando_Gutie_rrez_Nery_-_Desarrollador_Frontend_2026.pdf",
 };

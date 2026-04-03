@@ -15,4 +15,9 @@ export default {
   // faq_q6: "How do we start?",
   // faq_a6: "1) Goal + metric · 2) Mini-roadmap & MVP · 3) Weekly deliveries with live demo and shared board.",
   nav: ["Inicio", "Proyectos", "Contacto"],
+  card_title: "Quick Info",
+  card_location: "Mexico / Remote",
+  card_status: "Available for hire",
+  card_cv: "Download CV",
+  card_cv_url: "/Jesu_s_Armando_Gutie_rrez_Nery_-_Frontend_Developer_2026.pdf",
 };
