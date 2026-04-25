@@ -1,13 +1,100 @@
-# Astro with Tailwind
+# Portfolio V2
 
-```sh
-pnpm create astro@latest -- --template with-tailwindcss
+Personal portfolio built to present my work as a Front-End Developer with a stronger focus on product thinking, interaction design, and modern frontend architecture.
+
+Live site:
+[https://portfolio-v2-rho-amber.vercel.app](https://portfolio-v2-rho-amber.vercel.app)
+
+## Overview
+
+This version of my portfolio was designed to move away from a generic personal site and feel more like a polished product experience.
+
+The project highlights:
+
+- A cleaner personal brand
+- Bilingual content support
+- Theme switching
+- A command palette inspired interaction model
+- A modular content structure using Astro and React islands
+- A more intentional visual system than my previous portfolio version
+
+## Goals
+
+I built this portfolio to improve how I present myself as a frontend engineer.
+
+Instead of only listing technologies, the site aims to communicate:
+
+- who I am
+- how I work
+- what kind of frontend problems I enjoy solving
+- how users or recruiters can contact me quickly
+
+## Features
+
+- Responsive layout for desktop and mobile
+- Light and dark mode
+- Language toggle
+- Command menu interaction
+- Hero section with animated presentation
+- Intro and FAQ style content
+- Contact section with direct actions
+- Download CV action
+
+## Tech Stack
+
+- Astro
+- React
+- TypeScript
+- Tailwind CSS
+- Vercel
+
+## Project Structure
+
+The project uses Astro as the main framework and React for interactive components.
+
+This approach helps keep the site fast while still allowing richer UI behavior in specific sections.
+
+## Why This Project Matters
+
+This is not just a portfolio shell. It is also a frontend exercise in:
+
+- component composition
+- interaction design
+- content hierarchy
+- multilingual UX
+- balancing static performance with client-side interactivity
+
+## Running Locally
+
+```bash
+npm install
+npm run dev
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/with-tailwindcss)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/with-tailwindcss)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/with-tailwindcss/devcontainer.json)
+Build for production:
 
-Astro comes with [Tailwind](https://tailwindcss.com) support out of the box. This example showcases how to style your Astro project with Tailwind.
+```bash
+npm run build
+```
 
-For complete setup instructions, please see our [Tailwind Integration Guide](https://docs.astro.build/en/guides/integrations-guide/tailwind).
+Preview production build:
+
+```bash
+npm run preview
+```
+
+## Future Improvements
+
+- Add stronger project case studies
+- Improve recruiter-focused copy
+- Add screenshots and previews for featured work
+- Expand the contact flow
+- Refine the command palette actions
+
+## Author
+
+Jesus Armando Gutierrez Nery
+
+- GitHub: [https://github.com/arpwn](https://github.com/arpwn)
+- LinkedIn: [https://www.linkedin.com/in/armandonery34/](https://www.linkedin.com/in/armandonery34/)
+- Portfolio: [https://portfolio-v2-rho-amber.vercel.app](https://portfolio-v2-rho-amber.vercel.app)
