@@ -19,5 +19,5 @@ export default {
   card_location: "México / Remoto",
   card_status: "Disponible para trabajar",
   card_cv: "Descargar CV",
-  card_cv_url: "/Jesu_s_Armando_Gutie_rrez_Nery_-_Desarrollador_Frontend_2026.pdf",
+  card_cv_url: "/Jesús_Armando_Gutiérrez_Nery_-_Desarrollador_Frontend.pdf",
 };
