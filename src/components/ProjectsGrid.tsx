@@ -86,8 +86,8 @@ export default function ProjectsGrid() {
       <h2
         className="text-2xl md:text-3xl font-bold tracking-tight mb-6
         bg-gradient-to-r 
-        from-pink-200 via-rose-400 via-fuchsia-500 via-rose-300 to-pink-100
-        dark:from-rose-200 dark:via-fuchsia-400 dark:via-pink-500 dark:via-purple-400 dark:to-rose-100
+        from-pink-200 via-rose-400 to-pink-100
+        dark:from-rose-200 dark:via-fuchsia-400 dark:to-rose-100
         bg-clip-text text-transparent animate-gradient"
       >
         {lang === "es" ? "Proyectos" : "Projects"}
