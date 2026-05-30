@@ -10,8 +10,8 @@ import {
 
 // Diccionario ES/EN
 const dict = {
-  es: ["Inicio", "Contacto"],
-  en: ["Home", "Contact"],
+  es: ["Inicio", "Proyectos", "Contacto"],
+  en: ["Home", "Projects", "Contact"],
 };
 
 type Lang = "es" | "en";
@@ -48,9 +48,10 @@ export default function BreadcrumbDemo() {
     window.dispatchEvent(new CustomEvent("pager:navigate", { detail: { page: p } }));
   };
 
-  // Solo dos páginas:
+  // Páginas:
   // page 1 → Inicio
-  // page 2 → Contacto
+  // page 2 → Proyectos
+  // page 3 → Contacto
   const isFirst = page === 1;
   const currentLabel = labels[page - 1] ?? labels[0];
 

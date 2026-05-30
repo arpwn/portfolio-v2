@@ -14,7 +14,7 @@ export default {
   // faq_a5: "Products focused on fast shipping and modular design. Open to remote/international.",
   // faq_q6: "How do we start?",
   // faq_a6: "1) Goal + metric · 2) Mini-roadmap & MVP · 3) Weekly deliveries with live demo and shared board.",
-  nav: ["Inicio", "Proyectos", "Contacto"],
+  nav: ["Home", "Projects", "Contact"],
   card_title: "Quick Info",
   card_location: "Mexico / Remote",
   card_status: "Available for hire",

@@ -14,11 +14,12 @@ import {
   Moon,
   Home,
   Mail,
-  Phone,
+  FolderKanban,
   Linkedin,
   Github,
   ExternalLink,
 } from "lucide-react";
+import { getInitialLang } from "@/i18n";
 
 type Lang = "es" | "en";
 
@@ -28,6 +29,7 @@ const LABELS = {
     empty: "No hay resultados.",
     nav: "Navegación",
     home: "Inicio",
+    projects: "Proyectos",
     contact: "Contacto",
     quick: "Acciones rápidas",
     theme: "Alternar tema (claro/oscuro)",
@@ -40,6 +42,7 @@ const LABELS = {
     empty: "No results found.",
     nav: "Navigation",
     home: "Home",
+    projects: "Projects",
     contact: "Contact",
     quick: "Quick actions",
     theme: "Toggle theme (light/dark)",
@@ -51,7 +54,7 @@ const LABELS = {
 
 export function CommandMenu() {
   const [open, setOpen] = React.useState(false);
-  const [lang, setLang] = React.useState<Lang>("es");
+  const [lang, setLang] = React.useState<Lang>(getInitialLang());
 
   // Detectar cambios de idioma desde LanguageToggle
   React.useEffect(() => {
@@ -131,6 +134,11 @@ export function CommandMenu() {
               </CommandItem>
 
               <CommandItem onSelect={() => navigatePage(2)}>
+                <FolderKanban className="mr-2 h-4 w-4" />
+                {t.projects}
+              </CommandItem>
+
+              <CommandItem onSelect={() => navigatePage(3)}>
                 <Mail className="mr-2 h-4 w-4" />
                 {t.contact}
               </CommandItem>
