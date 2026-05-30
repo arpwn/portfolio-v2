@@ -176,7 +176,7 @@ export function CommandMenu() {
                 {t.theme}
               </CommandItem>
 
-              <CommandItem onSelect={() => copyEmail("armando@example.com")}>
+              <CommandItem onSelect={() => copyEmail("armandogune25@gmail.com")}>
                 <Mail className="mr-2 h-4 w-4" />
                 {t.copy}
               </CommandItem>
