@@ -23,7 +23,7 @@ const PROJECTS: Project[] = [
       en: "Internal request evaluator with simple rules to detect risk, prioritize review, and suggest the next step.",
     },
     image:
-      "./RuleCheck.png",
+      "/RuleCheck.png",
     tech: ["React", "Tailwind", "Vercel"],
     demo: "https://rulecheck-kappa.vercel.app/",
     code: "https://github.com/arpwn/rulecheck",
@@ -35,7 +35,7 @@ const PROJECTS: Project[] = [
       en: "Ultra-fast landing using Astro Islands, SEO-optimized and Lighthouse 100.",
     },
     image:
-      "./AstroLanding.png",
+      "/AstroLanding.png",
     tech: ["Astro", "Tailwind"],
     demo: "https://landing-astro-bay.vercel.app/",
     code: "https://github.com/arpwn/landing-astro",
@@ -47,7 +47,7 @@ const PROJECTS: Project[] = [
       en: "Operational summary generator to deliver shift notes in a clear, fast and consistent manner.",
     },
     image:
-      "./ShiftNote.png",
+      "/ShiftNote.png",
     tech: ["React", "Tailwind", "Vercel"],
     demo: "https://shiftnote-one.vercel.app/",
     code: "https://github.com/arpwn/shiftnote",
@@ -59,7 +59,7 @@ const PROJECTS: Project[] = [
       en: "Interactive dashboard to visualize prices, trends and key metrics of the crypto market in real time, with a modern and responsive interface.",
     },
     image:
-      "./CryptoMarket.png",
+      "/CryptoMarket.png",
     tech: ["React", "TypeScript", "Vercel", "API", "Charts"],
     demo: "https://crypto-market-dashboard-steel.vercel.app/",
     code: "https://github.com/arpwn/crypto-market-dashboard",
@@ -71,7 +71,7 @@ const PROJECTS: Project[] = [
       en: "Interactive panel to explore SpaceX missions, launches and key data with a modern interface inspired by a space control center.",
     },
     image:
-      "./SpaceX.png",
+      "/SpaceX.png",
     tech: ["React", "TypeScript", "API", "Dashboard"],
     demo: "https://spacex-mission-control-delta.vercel.app/",
     code: "https://github.com/arpwn/spacex-mission-control",
