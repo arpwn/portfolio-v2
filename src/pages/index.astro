@@ -100,34 +100,44 @@ import LanguageToggle from "@/components/LanguageToggle";
     <!-- Contenido paginado: Inicio / Proyectos / Contacto -->
     <TextPager client:only="react" />
 
-    <!-- Botón flotante para abrir Command -->
-    <button
-      class="fixed bottom-4 right-4 rounded-md border px-3 py-2 text-sm hover:bg-muted/50"
-      onclick="window.dispatchEvent(new Event('command:open'))">
-      Search (⌘/Ctrl + K)
-    </button>
+	    <!-- Botón flotante para abrir Command -->
+	    <button
+	      id="command-button"
+	      aria-label="Open command menu"
+	      class="fixed bottom-4 right-4 rounded-md border px-3 py-2 text-sm hover:bg-muted/50"
+	      onclick="window.dispatchEvent(new Event('command:open'))">
+	      Search (⌘/Ctrl + K)
+	    </button>
 
 <script is:inline>
-  (function () {
-    const dict = {
-      es: "Desarrollo interfaces modernas con foco en claridad, eficiencia y código mantenible.",
-      en: "I build modern interfaces focused on clarity, efficiency, and maintainable code."
-    };
-
-    const el = document.getElementById("hero-sub");
-    if (!el) return;
-
-    function getLang() {
-      try {
+	  (function () {
+	    const heroDict = {
+	      es: "Desarrollo interfaces modernas con foco en claridad, eficiencia y código mantenible.",
+	      en: "I build modern interfaces focused on clarity, efficiency, and maintainable code."
+	    };
+	    const commandDict = {
+	      es: "Buscar (⌘/Ctrl + K)",
+	      en: "Search (⌘/Ctrl + K)"
+	    };
+	
+	    const hero = document.getElementById("hero-sub");
+	    const commandButton = document.getElementById("command-button");
+	
+	    function getLang() {
+	      try {
         const saved = localStorage.getItem("lang");
         if (saved === "es" || saved === "en") return saved;
       } catch {}
       return (navigator.language || "").startsWith("es") ? "es" : "en";
-    }
-
-    function apply(lang) {
-      el.textContent = dict[lang] || dict.es;
-    }
+	    }
+	
+	    function apply(lang) {
+	      if (hero) hero.textContent = heroDict[lang] || heroDict.es;
+	      if (commandButton) {
+	        commandButton.textContent = commandDict[lang] || commandDict.es;
+	        commandButton.setAttribute("aria-label", lang === "es" ? "Abrir menu de comandos" : "Open command menu");
+	      }
+	    }
 
     // inicial
     apply(getLang());
