@@ -9,6 +9,7 @@ import TextPager from "@/components/TextPager";
 import DotBackgroundBg from "@/components/DotBackgroundBg";
 import { ModeToggle } from "@/components/ModeToggle";
 import LanguageToggle from "@/components/LanguageToggle";
+import { Toaster } from "@/components/ui/toast";
 ---
 
 <!-- Preferencias iniciales: idioma + tema -->
@@ -60,8 +61,9 @@ import LanguageToggle from "@/components/LanguageToggle";
     <!-- Fondo -->
     <DotBackgroundBg client:only="react" />
 
-    <!-- Command Palette (⌘/Ctrl + K) -->
-    <CommandMenu client:only="react" />
+	    <!-- Command Palette (⌘/Ctrl + K) -->
+	    <CommandMenu client:only="react" />
+	    <Toaster client:only="react" />
 
     <!-- Top bar: breadcrumb + toggles -->
     <div class="flex items-center justify-between px-12 mt-4 gap-2">

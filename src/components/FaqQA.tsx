@@ -5,12 +5,24 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
+import { toast } from "@/components/ui/toast";
 import { useLang } from "@/hooks/uselang";
 
 type FaqProps = { showHeader?: boolean };
 
 export default function FaqQA({ showHeader = true }: FaqProps) {
-  const { dict } = useLang();
+  const { dict, lang } = useLang();
+
+  const notifyCvDownload = () => {
+    toast({
+      title: lang === "es" ? "Descargando CV" : "Downloading CV",
+      description:
+        lang === "es"
+          ? "Tu archivo se esta preparando."
+          : "Your file is being prepared.",
+      variant: "success",
+    });
+  };
 
   return (
     /* max-w-full permite que el componente use todo el espacio definido en index.astro */
@@ -101,6 +113,7 @@ export default function FaqQA({ showHeader = true }: FaqProps) {
           <a 
             href={dict.card_cv_url || "/CV_Armando_ES.pdf"} 
             download 
+            onClick={notifyCvDownload}
             className="group flex items-center justify-center w-full py-3.5 px-4 bg-zinc-950 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-950 rounded-2xl text-sm font-bold transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-black/10 dark:shadow-white/5"
           >
             <svg 

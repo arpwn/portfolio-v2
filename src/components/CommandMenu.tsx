@@ -9,6 +9,7 @@ import {
   CommandItem,
   CommandSeparator
 } from "@/components/ui/command";
+import { toast } from "@/components/ui/toast";
 import {
   Sun,
   Moon,
@@ -34,6 +35,9 @@ const LABELS = {
     quick: "Acciones rápidas",
     theme: "Alternar tema (claro/oscuro)",
     copy: "Copiar email",
+    copied: "Email copiado",
+    copied_description: "Ya puedes pegarlo donde lo necesites.",
+    email_fallback: "Abriendo tu cliente de correo",
     whatsapp: "WhatsApp",
     links: "Redes / Links",
   },
@@ -47,6 +51,9 @@ const LABELS = {
     quick: "Quick actions",
     theme: "Toggle theme (light/dark)",
     copy: "Copy email",
+    copied: "Email copied",
+    copied_description: "You can paste it wherever you need it.",
+    email_fallback: "Opening your email client",
     whatsapp: "WhatsApp",
     links: "Social / Links",
   },
@@ -107,7 +114,17 @@ export function CommandMenu() {
   const copyEmail = async (email: string) => {
     try {
       await navigator.clipboard.writeText(email);
+      toast({
+        title: t.copied,
+        description: t.copied_description,
+        variant: "success",
+      });
     } catch {
+      toast({
+        title: t.email_fallback,
+        description: email,
+        variant: "info",
+      });
       window.location.href = `mailto:${email}`;
     }
     setOpen(false);
