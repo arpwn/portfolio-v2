@@ -42,11 +42,11 @@ export default function TextPager() {
   }, [dict.nav, totalPages]);
 
   return (
-    <div className="mx-12 mt-6 space-y-4 pb-28">
+    <div className="mx-12 mt-6 space-y-6 pb-16">
       <div className="rounded-md border p-4 md:p-6 text-base leading-relaxed bg-background/70">
         {PAGES[page - 1]}
       </div>
-      <div className="fixed bottom-4 left-4">
+      <div className="flex justify-center">
         <PaginationDemo
           totalPages={totalPages}
           initialPage={page}

@@ -8,6 +8,7 @@ import {
   PaginationNext,
   PaginationEllipsis,
 } from "@/components/ui/pagination"
+import { useLang } from "@/hooks/uselang"
 
 type Props = {
   totalPages?: number
@@ -23,6 +24,11 @@ export default function PaginationDemo({
   maxVisible = 3,
 }: Props) {
   const [page, setPage] = React.useState(initialPage)
+  const { lang } = useLang()
+
+  React.useEffect(() => {
+    setPage(initialPage)
+  }, [initialPage])
 
   const go = (p: number) => {
     const next = Math.max(1, Math.min(totalPages, p))
@@ -48,7 +54,7 @@ export default function PaginationDemo({
   const range = makeRange()
 
   return (
-    <div className="m-12">
+    <div className="flex flex-col items-center gap-3">
       <Pagination>
         <PaginationContent>
           <PaginationItem>
@@ -118,8 +124,9 @@ export default function PaginationDemo({
         </PaginationContent>
       </Pagination>
 
-      <div className="mt-4 text-sm text-muted-foreground">
-        Página actual: <span className="font-medium text-foreground">{page}</span> / {totalPages}
+      <div className="text-sm text-muted-foreground">
+        {lang === "es" ? "Pagina actual" : "Current page"}:{" "}
+        <span className="font-medium text-foreground">{page}</span> / {totalPages}
       </div>
     </div>
   )
