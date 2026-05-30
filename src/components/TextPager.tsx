@@ -12,7 +12,7 @@ export default function TextPager() {
   const PAGES: React.ReactNode[] = [
     // <HomeSection key="home" />,
     <FaqQA key="faq" />,
-    // <ProjectsGrid key="projects" />,
+    <ProjectsGrid key="projects" />,
     <ContactSection key="contact" />,
   ];
 

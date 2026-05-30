@@ -10,17 +10,33 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
  */
 
 export default function SeasonalHeaderPro() {
-  const [season, setSeason] = React.useState<"winter" | "valentine" | "spring" | "summer" | "autumn" | "none">("none");
+  const [season, setSeason] = React.useState<
+    | "winter"
+    | "valentine"
+    | "spring"
+    | "summer"
+    | "autumn"
+    | "day-of-the-dead"
+    | "code-night"
+    | "launch-mode"
+    | "none"
+  >("none");
 
   React.useEffect(() => {
-    const month = new Date().getMonth() + 1; // 1..12
-    if (month === 12 || month === 1) setSeason("winter");
+    const today = new Date();
+    const month = today.getMonth() + 1; // 1..12
+    const day = today.getDate();
+
+    if (month === 11 && day <= 2) setSeason("day-of-the-dead");
+    else if (month === 12 || month === 1) setSeason("winter");
     else if (month === 2) setSeason("valentine");
     else if (month >= 3 && month <= 5) setSeason("spring");
     else if (month >= 6 && month <= 8) setSeason("summer");
     else if (month >= 9 && month <= 11) setSeason("autumn");
     else setSeason("none");
-    // setSeason("valentine"); // ← Estatico para demo
+    // setSeason("day-of-the-dead"); // Estatico para demo
+    setSeason("code-night"); // Estatico para demo
+    // setSeason("launch-mode"); // Estatico para demo
 
   }, []);
 
@@ -90,6 +106,12 @@ function SeasonalLayer({ season }: { season: string }) {
       return <SummerMini />;
     case "autumn":
       return <AutumnMini />;
+    case "day-of-the-dead":
+      return <DayOfTheDeadMini />;
+    case "code-night":
+      return <CodeNightMini />;
+    case "launch-mode":
+      return <LaunchModeMini />;
     default:
       return null;
   }
@@ -256,6 +278,115 @@ function AutumnMini() {
         @keyframes leaf-fall {
           0% { transform: translateY(-6px) rotate(0deg); opacity: 1; }
           100% { transform: translateY(46px) rotate(60deg); opacity: 0.75; }
+        }
+      `}</style>
+    </>
+  );
+}
+
+
+/* ---------- Day of the Dead (cempasuchil petals) ---------- */
+function DayOfTheDeadMini() {
+  const petals = Array.from({ length: 8 });
+
+  return (
+    <>
+      {petals.map((_, i) => (
+        <div
+          key={i}
+          className="seasonal-particle absolute"
+          style={{
+            left: `${6 + Math.random() * 88}%`,
+            top: `${-8 + Math.random() * 38}px`,
+            fontSize: `${12 + Math.random() * 8}px`,
+            animation: `cempasuchil-fall ${3.5 + Math.random() * 3}s linear ${Math.random() * 0.8}s infinite`,
+            opacity: 0.95,
+          }}
+        >
+          🏵️
+        </div>
+      ))}
+
+      <style>{`
+        @keyframes cempasuchil-fall {
+          0% { transform: translateY(-6px) rotate(0deg); opacity: 1; }
+          100% { transform: translateY(46px) rotate(80deg); opacity: 0.75; }
+        }
+      `}</style>
+    </>
+  );
+}
+
+/* ---------- Code Night (terminal dots) ---------- */
+function CodeNightMini() {
+  const dots = Array.from({ length: 10 });
+
+  return (
+    <>
+      {dots.map((_, i) => (
+        <span
+          key={i}
+          className="seasonal-particle absolute font-mono"
+          style={{
+            left: `${8 + Math.random() * 84}%`,
+            top: `${2 + Math.random() * 42}px`,
+            fontSize: `${10 + Math.random() * 7}px`,
+            color: i % 2 === 0 ? "#22c55e" : "#38bdf8",
+            animation: `code-blink ${1.8 + Math.random() * 1.8}s ease-in-out ${Math.random()}s infinite`,
+            opacity: 0.85,
+          }}
+        >
+          {i % 3 === 0 ? "{}" : i % 3 === 1 ? "/>" : "01"}
+        </span>
+      ))}
+
+      <style>{`
+        @keyframes code-blink {
+          0%, 100% { transform: translateY(0); opacity: 0.45; }
+          50% { transform: translateY(-5px); opacity: 0.95; }
+        }
+      `}</style>
+    </>
+  );
+}
+
+/* ---------- Launch Mode (space mission accent) ---------- */
+function LaunchModeMini() {
+  return (
+    <>
+      <div
+        className="seasonal-particle absolute"
+        style={{
+          right: "8%",
+          top: "10px",
+          fontSize: "20px",
+          animation: "rocket-launch 3.2s ease-in-out infinite",
+          opacity: 0.9,
+        }}
+      >
+        🚀
+      </div>
+      <div
+        className="seasonal-particle absolute rounded-full"
+        style={{
+          right: "11%",
+          top: "38px",
+          width: "6px",
+          height: "6px",
+          background: "#f97316",
+          boxShadow: "0 0 12px #f97316",
+          animation: "rocket-flame 0.9s ease-in-out infinite",
+        }}
+      />
+
+      <style>{`
+        @keyframes rocket-launch {
+          0%, 100% { transform: translateY(0) rotate(-12deg); }
+          50% { transform: translateY(-10px) rotate(-12deg); }
+        }
+        @keyframes rocket-flame {
+          0%, 100% { transform: scale(0.75); opacity: 0.5; }
+          50% { transform: scale(1.2); opacity: 1; }
         }
       `}</style>
     </>

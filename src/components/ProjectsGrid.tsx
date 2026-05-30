@@ -17,16 +17,16 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
-    title: { es: "Dashboard Analytics", en: "Analytics Dashboard" },
+    title: { es: "RuleCheck", en: "RuleCheck" },
     description: {
-      es: "Panel con métricas en tiempo real, construido con React + Tailwind y desplegado en Vercel.",
-      en: "Real-time metrics dashboard built with React + Tailwind and deployed on Vercel.",
+      es: "Evaluador de solicitudes internas con reglas simples para detectar riesgo, priorizar revisión y sugerir el siguiente paso.",
+      en: "Internal request evaluator with simple rules to detect risk, prioritize review, and suggest the next step.",
     },
     image:
-      "https://plus.unsplash.com/premium_photo-1723517419729-1ecee473604c?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8",
+      "./RuleCheck.png",
     tech: ["React", "Tailwind", "Vercel"],
-    demo: "https://demo.com",
-    code: "https://github.com/arpwn",
+    demo: "https://rulecheck-kappa.vercel.app/",
+    code: "https://github.com/arpwn/rulecheck",
   },
   {
     title: { es: "Landing Astro", en: "Astro Landing" },
@@ -35,22 +35,46 @@ const PROJECTS: Project[] = [
       en: "Ultra-fast landing using Astro Islands, SEO-optimized and Lighthouse 100.",
     },
     image:
-      "https://images.unsplash.com/photo-1755561401726-2552032d2fde?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8",
+      "./AstroLanding.png",
     tech: ["Astro", "Tailwind"],
-    demo: "https://astro-landing.com",
-    code: "https://github.com/arpwn",
+    demo: "https://landing-astro-bay.vercel.app/",
+    code: "https://github.com/arpwn/landing-astro",
   },
   {
-    title: { es: "E-commerce MVP", en: "E-commerce MVP" },
+    title: { es: "ShiftNote", en: "ShiftNote" },
     description: {
-      es: "Prototipo de tienda con autenticación, carrito y pagos con Stripe.",
-      en: "Store prototype with auth, cart and Stripe payments.",
+      es: "Generador de resumen operativo para entregar notas de turno de forma clara, rápida y consistente.",
+      en: "Operational summary generator to deliver shift notes in a clear, fast and consistent manner.",
     },
     image:
-      "https://plus.unsplash.com/premium_photo-1738777152204-0ec9ab3502cc?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8",
-    tech: ["Next.js", "Stripe", "Supabase"],
-    demo: "https://ecommerce.com",
-    code: "https://github.com/arpwn",
+      "./ShiftNote.png",
+    tech: ["React", "Tailwind", "Vercel"],
+    demo: "https://shiftnote-one.vercel.app/",
+    code: "https://github.com/arpwn/shiftnote",
+  },
+  {
+    title: { es: "Crypto Market Dashboard", en: "Crypto Market Dashboard" },
+    description: {
+      es: "Dashboard interactivo para visualizar precios, tendencias y métricas clave del mercado cripto en tiempo real, con una interfaz moderna y responsiva.",
+      en: "Interactive dashboard to visualize prices, trends and key metrics of the crypto market in real time, with a modern and responsive interface.",
+    },
+    image:
+      "./CryptoMarket.png",
+    tech: ["React", "TypeScript", "Vercel", "API", "Charts"],
+    demo: "https://crypto-market-dashboard-steel.vercel.app/",
+    code: "https://github.com/arpwn/crypto-market-dashboard",
+  },
+  {
+    title: { es: "SpaceX Mission Control", en: "SpaceX Mission Control" },
+    description: {
+      es: "Panel interactivo para explorar misiones, lanzamientos y datos clave de SpaceX con una interfaz moderna inspirada en un centro de control espacial.",
+      en: "Interactive panel to explore SpaceX missions, launches and key data with a modern interface inspired by a space control center.",
+    },
+    image:
+      "./SpaceX.png",
+    tech: ["React", "TypeScript", "API", "Dashboard"],
+    demo: "https://spacex-mission-control-delta.vercel.app/",
+    code: "https://github.com/arpwn/spacex-mission-control",
   },
 ];
 
