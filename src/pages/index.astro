@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import '../styles/portfolio.css';
 import T from '../components/Localized.astro';
-import { profile, projects, experiments, experience } from '../data/portfolio';
+import { profile, projects, experiments, experience, education } from '../data/portfolio';
 const year = new Date().getFullYear();
 ---
 <!doctype html>
@@ -52,7 +52,7 @@ const year = new Date().getFullYear();
         <div class="hero-copy">
           <p class="eyebrow"><span class="status-dot"></span> FRONT-END DEVELOPER <span class="eyebrow-divider">/</span> CDMX</p>
           <h1 id="hero-title"><T es="Interfaces claras." en="Clear interfaces." /><br /><span class="accent"><T es="Código con intención." en="Purposeful code." /></span></h1>
-          <p class="hero-description"><T es="Soy Armando. Construyo herramientas web que convierten procesos complejos en experiencias simples y fáciles de usar." en="I'm Armando. I build web tools that turn complex processes into simple, usable experiences." /></p>
+          <p class="hero-description"><T es="Soy Armando. Desarrollo aplicaciones web empresariales con React, Angular y TypeScript, con foco en componentes reutilizables e interfaces claras." en="I'm Armando. I develop enterprise web applications with React, Angular, and TypeScript, focusing on reusable components and clear interfaces." /></p>
           <div class="hero-actions"><a class="button button-primary" href="#proyectos"><T es="Explorar proyectos" en="Explore projects" /><span aria-hidden="true">↗</span></a></div>
           <div class="hero-socials"><a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a><a href={`mailto:${profile.email}`}>Email <span aria-hidden="true">↗</span></a></div>
         </div>
@@ -86,7 +86,36 @@ const year = new Date().getFullYear();
         <div class="section-heading"><div><p class="eyebrow section-index"><span>02 /</span> <T es="EXPERIENCIA PROFESIONAL" en="PROFESSIONAL EXPERIENCE" /></p><h2 id="experience-title"><T es="Código en contextos reales." en="Code in real-world contexts." /></h2></div><p class="section-intro"><T es="Experiencias web para Ford, sistemas institucionales y productos internos, con colaboración internacional." en="Web experiences for Ford, institutional systems, and internal products, with international collaboration." /></p></div>
         <div class="experience-list">{experience.map((job, index) => <article class="experience-item"><div class="experience-meta"><span class="experience-count">0{index + 1}</span><p class="mini-label"><T {...job.date} /></p><h3>{job.company}</h3></div><div class="experience-detail"><h4><T {...job.role} /></h4><p><T {...job.description} /></p><ul>{job.points.map(point => <li><T {...point} /></li>)}</ul><p class="experience-tech">{job.tech}</p></div></article>)}</div>
       </div></section>
-      <section id="sobre-mi" class="section wrap about-section" aria-labelledby="about-title"><div class="about-intro"><p class="eyebrow section-index"><span>03 /</span> <T es="UN POCO SOBRE MÍ" en="A LITTLE ABOUT ME" /></p><h2 id="about-title"><T es="Me gusta entender el problema. Y construir la solución." en="I like understanding the problem. And building the solution." /></h2><p><T es="Soy Jesús Armando Gutiérrez Nery, desarrollador frontend e ingeniero en Sistemas Computacionales. Trabajo con React, Angular y TypeScript, desde componentes reutilizables hasta interfaces para procesos de negocio." en="I'm Jesús Armando Gutiérrez Nery, a frontend developer with a degree in Computer Systems Engineering. I work with React, Angular, and TypeScript, from reusable components to interfaces for business processes." /></p><p><T es="Actualmente soy Web Publisher en VML, donde trabajo con AEM as a Cloud Service para Ford. Valoro la comunicación clara, las demos frecuentes y el código mantenible." en="I currently work as a Web Publisher at VML, using AEM as a Cloud Service for Ford. I value clear communication, frequent demos, and maintainable code." /></p><div class="about-facts"><span>↳ <T es="Ciudad de México" en="Mexico City" /></span><span>↳ <T es="Español nativo · Inglés B2" en="Native Spanish · B2 English" /></span></div></div><div class="toolbox"><div class="toolbox-top"><span class="mini-label"><T es="MI CAJA DE HERRAMIENTAS" en="MY TOOLBOX" /></span><span aria-hidden="true">✳</span></div><div class="toolbox-group"><h3>Frontend</h3><div class="toolbox-tags"><span>React</span><span>Angular</span><span>TypeScript</span><span>JavaScript</span><span>Astro</span></div></div><div class="toolbox-group"><h3><T es="Interfaces y estado" en="Interfaces & state" /></h3><div class="toolbox-tags"><span>Tailwind CSS</span><span>Redux</span><span>PrimeNG</span><span>Angular Material</span><span>Fluent UI</span><span>Sass</span></div></div><div class="toolbox-group"><h3><T es="Contenido, integración y colaboración" en="Content, integration & collaboration" /></h3><div class="toolbox-tags"><span>AEM as a Cloud Service</span><span>DAM</span><span>Jira</span><span>REST APIs</span><span>Git</span><span>Java</span><span>ASP.NET</span><span>SQL</span></div></div></div></section>
+      <section id="sobre-mi" class="section wrap about-section" aria-labelledby="about-title">
+        <div class="about-intro">
+          <p class="eyebrow section-index"><span>03 /</span> <T es="UN POCO SOBRE MÍ" en="A LITTLE ABOUT ME" /></p>
+          <h2 id="about-title"><T es="Me gusta entender el problema. Y construir la solución." en="I like understanding the problem. And building the solution." /></h2>
+          <p><T es="Soy Jesús Armando Gutiérrez Nery, desarrollador frontend e ingeniero en Sistemas Computacionales. Trabajo con React, Angular y TypeScript en componentes reutilizables, integración de APIs, refactorización y optimización de interfaces." en="I'm Jesús Armando Gutiérrez Nery, a frontend developer with a degree in Computer Systems Engineering. I work with React, Angular, and TypeScript on reusable components, API integration, refactoring, and interface optimization." /></p>
+          <p><T es="Actualmente soy Web Publisher en VML y contribuyo a la migración de plataformas de Ford a AEM as a Cloud Service. He colaborado de forma remota con equipos de Estados Unidos e India y complemento mi experiencia frontend con formación en UX/UI." en="I currently work as a Web Publisher at VML, contributing to the migration of Ford platforms to AEM as a Cloud Service. I've collaborated remotely with teams in the United States and India and complement my frontend experience with UX/UI training." /></p>
+          <div class="about-facts"><span>↳ <T es="Ciudad de México" en="Mexico City" /></span><span>↳ <T es="Español nativo · Inglés B2" en="Native Spanish · B2 English" /></span></div>
+        </div>
+        <div class="toolbox">
+          <div class="toolbox-top"><span class="mini-label"><T es="MI CAJA DE HERRAMIENTAS" en="MY TOOLBOX" /></span><span aria-hidden="true">✳</span></div>
+          <div class="toolbox-group"><h3>Frontend</h3><div class="toolbox-tags"><span>React</span><span>Angular</span><span>TypeScript</span><span>JavaScript</span><span>Astro</span></div></div>
+          <div class="toolbox-group"><h3><T es="Interfaces y estado" en="Interfaces & state" /></h3><div class="toolbox-tags"><span>Tailwind CSS</span><span>Redux</span><span>PrimeNG</span><span>Angular Material</span><span>Fluent UI</span><span>Sass</span></div></div>
+          <div class="toolbox-group"><h3><T es="Contenido, integración y colaboración" en="Content, integration & collaboration" /></h3><div class="toolbox-tags"><span>AEM as a Cloud Service</span><span>AEM on-premises</span><span>DAM</span><span>Content Fragments</span><span>Azure DevOps</span><span>Microsoft Dynamics 365</span><span>Jira</span><span>REST APIs</span><span>Git</span><span>Java</span><span>ASP.NET</span><span>SQL</span></div></div>
+          <div class="toolbox-group"><h3><T es="Diseño UX/UI · Formación en curso" en="UX/UI design · Currently studying" /></h3><div class="toolbox-tags"><span>Figma</span><span>Maze</span><span>Excalidraw</span></div></div>
+        </div>
+        <div class="education-block" aria-labelledby="education-title">
+          <div class="education-heading"><h3 id="education-title"><T es="Formación" en="Education" /></h3><p class="mini-label"><T es="INGENIERÍA + DISEÑO UX/UI" en="ENGINEERING + UX/UI DESIGN" /></p></div>
+          <div class="education-list">
+            {education.map(item => (
+              <article class="education-item">
+                <p class="mini-label"><T {...item.date} /></p>
+                <h4>{item.institution}</h4>
+                <p class="education-program"><T {...item.program} /></p>
+                <p class="education-status"><T {...item.status} /></p>
+                <p class="education-description"><T {...item.description} /></p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
       <section id="contacto" class="contact-section wrap" aria-labelledby="contact-title"><div class="contact-panel"><p class="eyebrow section-index"><span>04 /</span> <T es="SIGUIENTE CONVERSACIÓN" en="THE NEXT CONVERSATION" /></p><h2 id="contact-title"><T es="¿Construimos algo" en="Let's build something" /><br /><span class="accent"><T es="que funcione mejor?" en="that works better." /></span></h2><p><T es="Si tienes un proyecto en mente o una oportunidad para colaborar, me encantará conocerla." en="Have a project in mind or an opportunity to collaborate? I'd love to hear about it." /></p><div class="contact-actions"><a class="button button-primary" href={`mailto:${profile.email}`}><T es="Escríbeme" en="Email me" /><span aria-hidden="true">↗</span></a><button id="copy-email" type="button" class="button button-secondary"><T es="Copiar email" en="Copy email" /><span aria-hidden="true">⧉</span></button></div><a class="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a><div id="copy-status" class="copy-status" role="status" aria-live="polite"></div><span class="contact-decoration" aria-hidden="true">↗</span></div></section>
     </main>
     <footer class="site-footer wrap"><p>© {year} Armando Gtz<span class="footer-divider">/</span><T es="Hecho con intención, en Astro." en="Built with intention, in Astro." /></p><div><a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><button id="command-button" type="button" aria-haspopup="dialog"><T es="Comandos" en="Commands" /><kbd>⌘ K</kbd></button><a class="back-top" href="#inicio" aria-label="Volver al inicio">↑</a></div></footer>

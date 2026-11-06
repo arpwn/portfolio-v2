@@ -46,30 +46,67 @@ export const experiments = [
 ];
 export const experience = [
   {
-    company: 'VML', date: copy('AGO 2026 — PRESENTE', 'AUG 2026 — PRESENT'), role: copy('Web Publisher', 'Web Publisher'),
-    description: copy('Experiencias web responsivas para Ford con Adobe Experience Manager.', 'Responsive web experiences for Ford with Adobe Experience Manager.'),
+    company: 'VML',
+    date: copy('AGO 2026 — PRESENTE', 'AUG 2026 — PRESENT'),
+    role: copy('Web Publisher', 'Web Publisher'),
+    description: copy('Publicación web y gestión de contenido para Ford con Adobe Experience Manager.', 'Web publishing and content management for Ford with Adobe Experience Manager.'),
     points: [
-      copy('Desarrollo y personalización de componentes de AEM, como tarjetas, banners y colorizadores, para escritorio y móvil.', 'Development and customization of AEM components, including cards, billboards, and colorizers, for desktop and mobile.'),
-      copy('Gestión de contenido y activos digitales: DAM, fragmentos de contenido, precios y plantillas.', 'Content and digital asset management: DAM, content fragments, pricing, and nameplates.'),
+      copy('Contribución a la migración de AEM on-premises a AEM as a Cloud Service, construyendo páginas de accesorios desde cero.', 'Contributed to the migration from AEM on-premises to AEM as a Cloud Service, building accessory pages from scratch.'),
+      copy('Configuración de componentes Cards, Billboards y Colorizers, y preparación de páginas para validación.', 'Configured Card, Billboard, and Colorizer components and prepared pages for validation.'),
+      copy('Gestión de activos digitales y Content Fragments, y actualización de precios en AEM on-premises.', 'Managed digital assets and Content Fragments and updated pricing in AEM on-premises.'),
     ],
-    tech: 'AEM as a Cloud Service · HTML · CSS · Jira',
+    tech: 'AEM as a Cloud Service · AEM on-premises · HTML · DAM · Content Fragments · Jira',
   },
   {
-    company: 'IMSS', date: copy('AGO 2024 — SEP 2025', 'AUG 2024 — SEP 2025'), role: copy('Desarrollador Frontend', 'Frontend Developer'),
-    description: copy('Interfaces para sistemas de información y gestión institucional.', 'Interfaces for institutional information and management systems.'),
-    points: [copy('SIRI: menús administrativos, filtros, reportes en Excel, mapas y gráficos estadísticos.', 'SIRI: administrative menus, filters, Excel reports, maps, and statistical charts.'), copy('SMNS y CYSAPR: login responsivo, componentes de edición e integración de APIs.', 'SMNS and CYSAPR: responsive login, editing components, and API integration.')],
-    tech: 'Angular 12 / 17 · TypeScript · PrimeNG · Angular Material',
+    company: 'IMSS',
+    date: copy('AGO 2024 — SEP 2025', 'AUG 2024 — SEP 2025'),
+    role: copy('Desarrollador Frontend', 'Frontend Developer'),
+    description: copy('Aplicaciones institucionales con funcionalidades frontend en producción y alcance nacional.', 'Institutional applications with frontend features released to production and nationwide reach.'),
+    points: [
+      copy('SIRI: funcionalidades para un sistema utilizado a nivel nacional en México; menús, filtros, reportes en Excel, mapas y gráficos con Angular.', 'SIRI: features for a system used nationwide in Mexico, including menus, filters, Excel reports, maps, and charts with Angular.'),
+      copy('SMNS: interfaz de login responsiva y accesible, y optimización de carga y rendimiento.', 'SMNS: a responsive, accessible login interface and load-time and performance optimization.'),
+      copy('CYSAPR: documentación de requisitos, componentes editables e integración de APIs con TypeScript.', 'CYSAPR: requirements documentation, editable components, and API integration with TypeScript.'),
+    ],
+    tech: 'Angular 12 / 17 · TypeScript · PrimeNG · Angular Material · Java · SQL',
   },
   {
-    company: 'EY GDS', date: copy('MAR 2022 — MAR 2023', 'MAR 2022 — MAR 2023'), role: copy('Desarrollador Frontend / Ingeniero de Software', 'Frontend Developer / Software Engineer'),
-    description: copy('Productos de gestión de proyectos y datos de talento, en un equipo internacional.', 'Project and talent data management products within an international team.'),
-    points: [copy('LYNX: refactorización de componentes con Fluent UI y mejoras de rendimiento.', 'LYNX: component refactoring with Fluent UI and performance improvements.'), copy('TalentOps: componentes con React y TypeScript, gestión de estado con Redux y consumo de APIs.', 'TalentOps: React and TypeScript components, Redux state management, and API consumption.')],
-    tech: 'React · TypeScript · Redux · Fluent UI · Sass',
+    company: 'EY GDS',
+    date: copy('MAR 2022 — MAR 2023', 'MAR 2022 — MAR 2023'),
+    role: copy('Desarrollador Frontend / Ingeniero de Software', 'Frontend Developer / Software Engineer'),
+    description: copy('Plataformas empresariales de gestión de engagements y datos de talento, con colaboración internacional.', 'Enterprise engagement and talent data management platforms with international collaboration.'),
+    points: [
+      copy('LYNX: mantenimiento de una plataforma utilizada por empleados de EY en Estados Unidos para gestionar la aceptación de engagements.', 'LYNX: maintenance of a platform used by EY employees in the United States to manage engagement acceptance.'),
+      copy('Refactorización y optimización de componentes con React, TypeScript y Fluent UI para mejorar rendimiento y mantenibilidad.', 'Refactored and optimized components with React, TypeScript, and Fluent UI to improve performance and maintainability.'),
+      copy('TalentOps: componentes con React y TypeScript, gestión de estado con Redux e integración de APIs.', 'TalentOps: React and TypeScript components, Redux state management, and API integration.'),
+    ],
+    tech: 'React · TypeScript · Fluent UI · Microsoft Dynamics 365 · Azure DevOps · Redux · Sass',
   },
   {
-    company: 'Consorcio Jurídico', date: copy('SEP 2020 — JUN 2021', 'SEP 2020 — JUN 2021'), role: copy('Desarrollador Frontend / Ingeniero de Software', 'Frontend Developer / Software Engineer'),
+    company: 'Consorcio Jurídico',
+    date: copy('SEP 2020 — JUN 2021', 'SEP 2020 — JUN 2021'),
+    role: copy('Desarrollador Frontend / Ingeniero de Software', 'Frontend Developer / Software Engineer'),
     description: copy('Interfaces web y móviles para la gestión de solicitudes internas.', 'Web and mobile interfaces for internal request management.'),
-    points: [copy('AGSI: diseño de interfaces, componentes y páginas para una experiencia consistente.', 'AGSI: interface, component, and page design for a consistent experience.'), copy('Adaptación de la interfaz web a Android Studio con Java.', 'Adaptation of the web interface to Android Studio with Java.')],
-    tech: 'JavaScript · HTML / CSS · Bootstrap · ASP.NET · Java',
+    points: [
+      copy('AGSI: diseño de interfaces, componentes y páginas para una experiencia consistente.', 'AGSI: interface, component, and page design for a consistent experience.'),
+      copy('Adaptación de la interfaz web a Android Studio con Java.', 'Adaptation of the web interface to Android Studio with Java.'),
+    ],
+    tech: 'JavaScript · HTML / CSS · Bootstrap · ASP.NET · SQL Server · Android Studio · Java',
+  },
+];
+
+export const education = [
+  {
+    institution: 'TripleTen',
+    program: copy('Bootcamp de Diseño UX/UI', 'UX/UI Design Bootcamp'),
+    date: copy('ABR 2026 — PRESENTE', 'APR 2026 — PRESENT'),
+    status: copy('En curso · Finalización prevista: noviembre de 2026', 'In progress · Expected completion: November 2026'),
+    description: copy('Wireframing, prototipado interactivo en Figma, pruebas de usabilidad con Maze y exploración visual con Excalidraw.', 'Wireframing, interactive prototyping in Figma, usability testing with Maze, and visual exploration with Excalidraw.'),
+  },
+  {
+    institution: 'Universidad San Carlos',
+    program: copy('Ingeniería en Sistemas Computacionales', "Bachelor’s Degree in Computer Systems Engineering"),
+    date: copy('AGO 2015 — JUL 2019', 'AUG 2015 — JUL 2019'),
+    status: copy('Estado de México', 'Mexico State'),
+    description: copy('Formación universitaria en Ingeniería en Sistemas Computacionales.', 'University education in Computer Systems Engineering.'),
   },
 ];
