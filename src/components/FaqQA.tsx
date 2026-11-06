@@ -89,7 +89,7 @@ export default function FaqQA({ showHeader = true }: FaqProps) {
 
         {/* --- COLUMNA DERECHA: TARJETA QUICK INFO --- */}
         {/* hidden lg:flex hace que desaparezca en móvil para no romper el flujo vertical */}
-        <aside className="hidden lg:flex w-72 flex-shrink-0 flex-col border border-zinc-200 dark:border-zinc-800 rounded-[2rem] p-7 bg-white/40 dark:bg-zinc-900/40 backdrop-blur-md shadow-sm sticky top-10 transition-colors duration-300">
+        {/* <aside className="hidden lg:flex w-72 flex-shrink-0 flex-col border border-zinc-200 dark:border-zinc-800 rounded-[2rem] p-7 bg-white/40 dark:bg-zinc-900/40 backdrop-blur-md shadow-sm sticky top-10 transition-colors duration-300">
           <h3 className="text-[10px] font-bold uppercase tracking-[0.25em] text-zinc-400 dark:text-zinc-500 mb-6">
             {dict.card_title || "Quick Info"}
           </h3>
@@ -126,7 +126,7 @@ export default function FaqQA({ showHeader = true }: FaqProps) {
             </svg>
             {dict.card_cv || "Download CV"}
           </a>
-        </aside>
+        </aside> */}
 
       </div>
     </section>
