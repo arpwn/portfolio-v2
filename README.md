@@ -15,7 +15,7 @@ The project highlights:
 - Bilingual content support
 - Theme switching
 - A command palette inspired interaction model
-- A modular content structure using Astro and React islands
+- A modular content structure using Astro and TypeScript
 - A more intentional visual system than my previous portfolio version
 
 ## Goals
@@ -35,10 +35,9 @@ Instead of only listing technologies, the site aims to communicate:
 - Light and dark mode
 - Language toggle
 - Command menu interaction
-- Hero section with animated presentation
-- Intro and FAQ style content
+- Hero section with a featured project preview
+- Selected projects, case studies, professional experience, and a technology toolbox
 - Contact section with direct actions
-- Download CV action
 
 ## Tech Stack
 
@@ -50,9 +49,11 @@ Instead of only listing technologies, the site aims to communicate:
 
 ## Project Structure
 
-The project uses Astro as the main framework and React for interactive components.
+Astro renders the homepage as static HTML. TypeScript handles language switching, theme preferences, the command menu, and email copying.
 
-This approach helps keep the site fast while still allowing richer UI behavior in specific sections.
+Portfolio content lives in `src/data/portfolio.ts`; the main page and its styles are in `src/pages/index.astro` and `src/styles/portfolio.css`. Existing React components remain in the repository.
+
+Personal CVs are excluded from public assets and production builds. Contact is available through email and LinkedIn.
 
 ## Why This Project Matters
 
@@ -85,9 +86,7 @@ npm run preview
 
 ## Future Improvements
 
-- Add stronger project case studies
 - Improve recruiter-focused copy
-- Add screenshots and previews for featured work
 - Expand the contact flow
 - Refine the command palette actions
 

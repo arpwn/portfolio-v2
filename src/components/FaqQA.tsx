@@ -5,24 +5,12 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
-import { toast } from "@/components/ui/toast";
 import { useLang } from "@/hooks/uselang";
 
 type FaqProps = { showHeader?: boolean };
 
 export default function FaqQA({ showHeader = true }: FaqProps) {
-  const { dict, lang } = useLang();
-
-  const notifyCvDownload = () => {
-    toast({
-      title: lang === "es" ? "Descargando CV" : "Downloading CV",
-      description:
-        lang === "es"
-          ? "Tu archivo se esta preparando."
-          : "Your file is being prepared.",
-      variant: "success",
-    });
-  };
+  const { dict } = useLang();
 
   return (
     /* max-w-full permite que el componente use todo el espacio definido en index.astro */
@@ -110,22 +98,6 @@ export default function FaqQA({ showHeader = true }: FaqProps) {
             </li>
           </ul>
 
-          <a 
-            href={dict.card_cv_url || "/CV_Armando_ES.pdf"} 
-            download 
-            onClick={notifyCvDownload}
-            className="group flex items-center justify-center w-full py-3.5 px-4 bg-zinc-950 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-950 rounded-2xl text-sm font-bold transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-black/10 dark:shadow-white/5"
-          >
-            <svg 
-              className="w-4 h-4 mr-2 transition-transform group-hover:translate-y-0.5" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-            </svg>
-            {dict.card_cv || "Download CV"}
-          </a>
         </aside> */}
 
       </div>

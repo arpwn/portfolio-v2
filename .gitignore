@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Personal CVs are not public website assets
+/public/*_Desarrollador_Frontend.pdf
+/public/*_Frontend_Developer.pdf

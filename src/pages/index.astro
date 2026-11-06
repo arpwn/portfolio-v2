@@ -1,154 +1,96 @@
-﻿---
-import "../styles/global.css";
-import { CommandMenu } from "@/components/CommandMenu";
-import BreadcrumbDemo from "@/components/BreadcrumbDemo";
-import HeaderRow from "@/components/HeaderRow";
-import SeasonalHeader from "@/components/SeasonalHeader";
-import SeasonalHeaderPro from "@/components/SeasonalHeaderPro";
-import TextPager from "@/components/TextPager";
-import DotBackgroundBg from "@/components/DotBackgroundBg";
-import { ModeToggle } from "@/components/ModeToggle";
-import LanguageToggle from "@/components/LanguageToggle";
-import { Toaster } from "@/components/ui/toast";
 ---
-
-<!-- Preferencias iniciales: idioma + tema -->
-<script is:inline>
-  // Idioma inicial (localStorage -> navigator)
-  (function () {
-    try {
-      const saved = localStorage.getItem('lang');
-      const lang = (saved === 'en' || saved === 'es')
-        ? saved
-        : (navigator.language || '').toLowerCase().startsWith('es') ? 'es' : 'en';
-      document.documentElement.setAttribute('lang', lang);
-    } catch {}
-  })();
-
-  // Tema inicial (localStorage -> prefers-color-scheme)
-  (function () {
-    const getThemePreference = () => {
-      try {
-        const saved = localStorage.getItem('theme');
-        if (saved) return saved;
-      } catch {}
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    };
-    const isDark = getThemePreference() === 'dark';
-    document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
-
-    // Observa cambios para persistir
-    try {
-      const observer = new MutationObserver(() => {
-        const isDarkNow = document.documentElement.classList.contains('dark');
-        localStorage.setItem('theme', isDarkNow ? 'dark' : 'light');
-      });
-      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-    } catch {}
-  })();
-</script>
-
-<html lang="es">
+import '../styles/global.css';
+import '../styles/portfolio.css';
+import T from '../components/Localized.astro';
+import { profile, projects, experiments, experience } from '../data/portfolio';
+const year = new Date().getFullYear();
+---
+<!doctype html>
+<html lang="es" class="dark">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#111014" />
+    <title>Armando Gtz — Front-End Developer</title>
+    <meta name="description" content="Portafolio de Armando Gutiérrez Nery. Desarrollo frontend con React, Angular y TypeScript. Proyectos, experiencia profesional y contacto." />
+    <meta property="og:title" content="Armando Gtz — Front-End Developer" />
+    <meta property="og:description" content="Interfaces claras. Código con intención. Explora mis proyectos y experiencia con React, Angular y TypeScript." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Armando — Front-End Developer</title>
+    <script is:inline>
+      (() => {
+        try {
+          const theme = localStorage.getItem('theme') || 'dark';
+          document.documentElement.classList.toggle('dark', theme === 'dark' || (theme === 'system' && matchMedia('(prefers-color-scheme: dark)').matches));
+          const lang = localStorage.getItem('lang');
+          document.documentElement.lang = lang === 'en' ? 'en' : 'es';
+        } catch {}
+      })();
+    </script>
   </head>
-
-  <body class="min-h-screen relative pb-24 bg-white text-black dark:bg-black dark:text-white">
-    <!-- Fondo -->
-    <DotBackgroundBg client:only="react" />
-
-	    <!-- Command Palette (⌘/Ctrl + K) -->
-	    <CommandMenu client:only="react" />
-	    <Toaster client:only="react" />
-
-    <!-- Top bar: breadcrumb + toggles -->
-    <div class="flex items-center justify-between px-12 mt-4 gap-2">
-      <BreadcrumbDemo client:only="react" />
-      <div class="flex items-center gap-2">
-        <LanguageToggle client:only="react" />
-        <ModeToggle client:load />
+  <body class="portfolio">
+    <a class="skip-link" href="#main"><T es="Saltar al contenido" en="Skip to content" /></a>
+    <header class="site-header">
+      <div class="header-inner wrap">
+        <a href="#inicio" class="wordmark" aria-label="Armando Gtz — Inicio"><span class="monogram">ag<span>.</span></span><span>Armando Gtz<span class="wordmark-dot">.</span></span></a>
+        <nav class="main-nav" aria-label="Principal">
+          <a href="#proyectos"><T es="Proyectos" en="Projects" /></a>
+          <a href="#experiencia"><T es="Experiencia" en="Experience" /></a>
+          <a href="#sobre-mi"><T es="Sobre mí" en="About" /></a>
+          <a href="#contacto"><T es="Contacto" en="Contact" /></a>
+        </nav>
+        <div class="header-actions">
+          <button id="language-toggle" class="icon-button language-button" type="button" aria-label="Switch to English"><span id="language-label">EN</span></button>
+          <button id="theme-toggle" class="icon-button theme-button" type="button" aria-label="Cambiar a tema claro"><svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg><svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 15.5A8.5 8.5 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5Z"/></svg></button>
+          <a class="header-contact" href={`mailto:${profile.email}`}><T es="Hablemos" en="Let's talk" /><span aria-hidden="true">↗</span></a>
+        </div>
       </div>
-    </div>
-
-    <!-- Header con avatar + nombre -->
-    <!-- <HeaderRow client:only="react" /> -->
-
-    <!-- <SeasonalHeader client:only="react" /> -->
-
-    <SeasonalHeaderPro client:only="react" />
-
-    <h1 class="mx-12 mt-10 text-4xl md:text-5xl font-bold
-           bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400
-           bg-clip-text text-transparent
-           transition-all duration-300 hover:tracking-wide">
-      Front-End Developer
-    </h1>
-
-    <p
-      id="hero-sub"
-      class="mx-12 mt-2 text-muted-foreground text-lg max-w-xl"
-    >
-
-    <p class="mx-12 mt-3 text-sm text-muted-foreground tracking-wide">
-      React · Angular · TypeScript
-    </p>
-
-    <p class="mx-12 mt-6 text-base" id="hero-sub"></p>
-
-    <!-- Contenido paginado: Inicio / Proyectos / Contacto -->
-    <TextPager client:only="react" />
-
-	    <!-- Botón flotante para abrir Command -->
-	    <button
-	      id="command-button"
-	      aria-label="Open command menu"
-	      class="fixed bottom-4 right-4 rounded-md border px-3 py-2 text-sm hover:bg-muted/50"
-	      onclick="window.dispatchEvent(new Event('command:open'))">
-	      Search (⌘/Ctrl + K)
-	    </button>
-
-<script is:inline>
-	  (function () {
-	    const heroDict = {
-	      es: "Desarrollo interfaces modernas con foco en claridad, eficiencia y código mantenible.",
-	      en: "I build modern interfaces focused on clarity, efficiency, and maintainable code."
-	    };
-	    const commandDict = {
-	      es: "Buscar (⌘/Ctrl + K)",
-	      en: "Search (⌘/Ctrl + K)"
-	    };
-	
-	    const hero = document.getElementById("hero-sub");
-	    const commandButton = document.getElementById("command-button");
-	
-	    function getLang() {
-	      try {
-        const saved = localStorage.getItem("lang");
-        if (saved === "es" || saved === "en") return saved;
-      } catch {}
-      return (navigator.language || "").startsWith("es") ? "es" : "en";
-	    }
-	
-	    function apply(lang) {
-	      if (hero) hero.textContent = heroDict[lang] || heroDict.es;
-	      if (commandButton) {
-	        commandButton.textContent = commandDict[lang] || commandDict.es;
-	        commandButton.setAttribute("aria-label", lang === "es" ? "Abrir menu de comandos" : "Open command menu");
-	      }
-	    }
-
-    // inicial
-    apply(getLang());
-
-    // escuchar cambios
-    window.addEventListener("lang:changed", (e) => {
-      apply(e?.detail?.lang || getLang());
-    });
-  })();
-</script>
+    </header>
+    <main id="main">
+      <section id="inicio" class="hero wrap" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="status-dot"></span> FRONT-END DEVELOPER <span class="eyebrow-divider">/</span> CDMX</p>
+          <h1 id="hero-title"><T es="Interfaces claras." en="Clear interfaces." /><br /><span class="accent"><T es="Código con intención." en="Purposeful code." /></span></h1>
+          <p class="hero-description"><T es="Soy Armando. Construyo herramientas web que convierten procesos complejos en experiencias simples y fáciles de usar." en="I'm Armando. I build web tools that turn complex processes into simple, usable experiences." /></p>
+          <div class="hero-actions"><a class="button button-primary" href="#proyectos"><T es="Explorar proyectos" en="Explore projects" /><span aria-hidden="true">↗</span></a></div>
+          <div class="hero-socials"><a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a><a href={`mailto:${profile.email}`}>Email <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <a class="hero-preview" href="#rulecheck" aria-label="RuleCheck — Ver proyecto">
+          <div class="preview-top"><span class="window-dots"><i></i><i></i><i></i></span><span>rulecheck.app</span><span class="preview-arrow" aria-hidden="true">↗</span></div>
+          <div class="hero-image"><img src="/RuleCheck.png" alt="RuleCheck: formulario de solicitud y panel con nivel de riesgo, motivos y siguiente paso" width="2336" height="1586" fetchpriority="high" /></div>
+          <div class="preview-bottom"><span><span class="mini-label"><T es="PROYECTO DESTACADO" en="FEATURED PROJECT" /></span><strong>RuleCheck</strong></span><span class="preview-pill">React + Tailwind</span></div>
+          <div class="preview-caption"><span class="status-dot"></span><T es="Del dato a la decisión." en="From data to decision." /></div>
+        </a>
+        <div class="hero-footnote"><span><T es="Mi stack de trabajo" en="My working stack" /></span><div><strong>React</strong><span>✳</span><strong>Angular</strong><span>✳</span><strong>TypeScript</strong><span>✳</span><strong>Tailwind CSS</strong><span>✳</span><strong>Astro</strong></div><a href="#proyectos" aria-label="Ir a proyectos">↓</a></div>
+      </section>
+      <section id="proyectos" class="section wrap" aria-labelledby="projects-title">
+        <div class="section-heading"><div><p class="eyebrow section-index"><span>01 /</span> <T es="TRABAJO SELECCIONADO" en="SELECTED WORK" /></p><h2 id="projects-title"><T es="De la idea a la interfaz." en="From idea to interface." /></h2></div><p class="section-intro"><T es="Proyectos personales para resolver problemas concretos, explorar interfaces y seguir construyendo." en="Personal projects to solve concrete problems, explore interfaces, and keep building." /></p></div>
+        <div class="selected-projects">
+          {projects.map((project, index) => (
+            <article id={project.id} class:list={['project', { 'project-featured': index === 0 }]}>
+              <a class:list={['project-image', `image-${project.id}`]} href={project.demo} target="_blank" rel="noopener noreferrer" aria-label={`${project.name} — Demo`}>
+                <span class="project-number">0{index + 1}</span><img src={project.image} alt={`${project.name} — interfaz del proyecto`} width={project.width} height={project.height} loading="lazy" decoding="async" /><span class="image-link" aria-hidden="true">↗</span>
+              </a>
+              <div class="project-body"><p class="mini-label"><T {...project.category} /></p><h3>{project.name}</h3><p class="project-tagline"><T {...project.description} /></p><p class="project-summary"><T {...project.summary} /></p><ul class="tech-list" aria-label="Tecnologías">{project.tech.map(tech => <li>{tech}</li>)}</ul>
+                <div class="project-links"><a href={project.demo} target="_blank" rel="noopener noreferrer"><T es="Ver demo" en="Live demo" /><span aria-hidden="true">↗</span></a><a href={project.code} target="_blank" rel="noopener noreferrer"><T es="Código" en="Source code" /><span aria-hidden="true">↗</span></a></div>
+                <details class="case-study"><summary><T es="Detrás del proyecto" en="Behind the project" /><span class="details-plus" aria-hidden="true">+</span></summary><div class="case-content"><h4><T es="El problema" en="The problem" /></h4><p><T {...project.problem} /></p><h4><T es="La solución" en="The solution" /></h4><p><T {...project.solution} /></p><h4><T es="Enfoque de interfaz" en="Interface approach" /></h4><p><T {...project.focus} /></p></div></details>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div class="more-projects-heading"><h3><T es="También he construido" en="Also built" /></h3><span class="mini-label">02 <T es="PROYECTOS MÁS" en="MORE PROJECTS" /></span></div>
+        <div class="experiments">{experiments.map(project => <article class="experiment"><a class="experiment-image" href={project.demo} target="_blank" rel="noopener noreferrer" aria-label={`${project.name} — Demo`}><img src={project.image} width={project.width} height={project.height} alt={`${project.name} — interfaz del proyecto`} loading="lazy" decoding="async" /></a><div><p class="mini-label"><T {...project.category} /></p><h3>{project.name}</h3><p><T {...project.summary} /></p><span class="experiment-tech">{project.tech}</span><div class="project-links"><a href={project.demo} target="_blank" rel="noopener noreferrer"><T es="Demo" en="Live demo" /> ↗</a><a href={project.code} target="_blank" rel="noopener noreferrer"><T es="Código" en="Code" /> ↗</a></div></div></article>)}</div>
+      </section>
+      <section id="experiencia" class="section experience-section" aria-labelledby="experience-title"><div class="wrap">
+        <div class="section-heading"><div><p class="eyebrow section-index"><span>02 /</span> <T es="EXPERIENCIA PROFESIONAL" en="PROFESSIONAL EXPERIENCE" /></p><h2 id="experience-title"><T es="Código en contextos reales." en="Code in real-world contexts." /></h2></div><p class="section-intro"><T es="Experiencias web para Ford, sistemas institucionales y productos internos, con colaboración internacional." en="Web experiences for Ford, institutional systems, and internal products, with international collaboration." /></p></div>
+        <div class="experience-list">{experience.map((job, index) => <article class="experience-item"><div class="experience-meta"><span class="experience-count">0{index + 1}</span><p class="mini-label"><T {...job.date} /></p><h3>{job.company}</h3></div><div class="experience-detail"><h4><T {...job.role} /></h4><p><T {...job.description} /></p><ul>{job.points.map(point => <li><T {...point} /></li>)}</ul><p class="experience-tech">{job.tech}</p></div></article>)}</div>
+      </div></section>
+      <section id="sobre-mi" class="section wrap about-section" aria-labelledby="about-title"><div class="about-intro"><p class="eyebrow section-index"><span>03 /</span> <T es="UN POCO SOBRE MÍ" en="A LITTLE ABOUT ME" /></p><h2 id="about-title"><T es="Me gusta entender el problema. Y construir la solución." en="I like understanding the problem. And building the solution." /></h2><p><T es="Soy Jesús Armando Gutiérrez Nery, desarrollador frontend e ingeniero en Sistemas Computacionales. Trabajo con React, Angular y TypeScript, desde componentes reutilizables hasta interfaces para procesos de negocio." en="I'm Jesús Armando Gutiérrez Nery, a frontend developer with a degree in Computer Systems Engineering. I work with React, Angular, and TypeScript, from reusable components to interfaces for business processes." /></p><p><T es="Actualmente soy Web Publisher en VML, donde trabajo con AEM as a Cloud Service para Ford. Valoro la comunicación clara, las demos frecuentes y el código mantenible." en="I currently work as a Web Publisher at VML, using AEM as a Cloud Service for Ford. I value clear communication, frequent demos, and maintainable code." /></p><div class="about-facts"><span>↳ <T es="Ciudad de México" en="Mexico City" /></span><span>↳ <T es="Español nativo · Inglés B2" en="Native Spanish · B2 English" /></span></div></div><div class="toolbox"><div class="toolbox-top"><span class="mini-label"><T es="MI CAJA DE HERRAMIENTAS" en="MY TOOLBOX" /></span><span aria-hidden="true">✳</span></div><div class="toolbox-group"><h3>Frontend</h3><div class="toolbox-tags"><span>React</span><span>Angular</span><span>TypeScript</span><span>JavaScript</span><span>Astro</span></div></div><div class="toolbox-group"><h3><T es="Interfaces y estado" en="Interfaces & state" /></h3><div class="toolbox-tags"><span>Tailwind CSS</span><span>Redux</span><span>PrimeNG</span><span>Angular Material</span><span>Fluent UI</span><span>Sass</span></div></div><div class="toolbox-group"><h3><T es="Contenido, integración y colaboración" en="Content, integration & collaboration" /></h3><div class="toolbox-tags"><span>AEM as a Cloud Service</span><span>DAM</span><span>Jira</span><span>REST APIs</span><span>Git</span><span>Java</span><span>ASP.NET</span><span>SQL</span></div></div></div></section>
+      <section id="contacto" class="contact-section wrap" aria-labelledby="contact-title"><div class="contact-panel"><p class="eyebrow section-index"><span>04 /</span> <T es="SIGUIENTE CONVERSACIÓN" en="THE NEXT CONVERSATION" /></p><h2 id="contact-title"><T es="¿Construimos algo" en="Let's build something" /><br /><span class="accent"><T es="que funcione mejor?" en="that works better." /></span></h2><p><T es="Si tienes un proyecto en mente o una oportunidad para colaborar, me encantará conocerla." en="Have a project in mind or an opportunity to collaborate? I'd love to hear about it." /></p><div class="contact-actions"><a class="button button-primary" href={`mailto:${profile.email}`}><T es="Escríbeme" en="Email me" /><span aria-hidden="true">↗</span></a><button id="copy-email" type="button" class="button button-secondary"><T es="Copiar email" en="Copy email" /><span aria-hidden="true">⧉</span></button></div><a class="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a><div id="copy-status" class="copy-status" role="status" aria-live="polite"></div><span class="contact-decoration" aria-hidden="true">↗</span></div></section>
+    </main>
+    <footer class="site-footer wrap"><p>© {year} Armando Gtz<span class="footer-divider">/</span><T es="Hecho con intención, en Astro." en="Built with intention, in Astro." /></p><div><a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><button id="command-button" type="button" aria-haspopup="dialog"><T es="Comandos" en="Commands" /><kbd>⌘ K</kbd></button><a class="back-top" href="#inicio" aria-label="Volver al inicio">↑</a></div></footer>
+    <dialog id="command-dialog" class="command-dialog" aria-labelledby="command-title"><div class="command-header"><h2 id="command-title"><T es="¿A dónde vamos?" en="Where to?" /></h2><button id="close-command" class="icon-button" type="button" aria-label="Cerrar">×</button></div><label class="sr-only" for="command-search"><T es="Buscar una sección" en="Search for a section" /></label><input id="command-search" type="search" placeholder="Buscar una sección…" autocomplete="off" /><nav aria-label="Comandos"><a href="#inicio" data-search="inicio home"><T es="Inicio" en="Home" /><span>↵</span></a><a href="#proyectos" data-search="proyectos projects trabajo work"><T es="Proyectos" en="Projects" /><span>↵</span></a><a href="#experiencia" data-search="experiencia experience"><T es="Experiencia" en="Experience" /><span>↵</span></a><a href="#sobre-mi" data-search="sobre about tecnologias stack"><T es="Sobre mí" en="About" /><span>↵</span></a><a href="#contacto" data-search="contacto contact email"><T es="Contacto" en="Contact" /><span>↵</span></a><p id="command-empty" hidden><T es="No hay resultados." en="No results found." /></p></nav><p class="command-hint"><T es="Tab para navegar · Enter para abrir · Esc para cerrar" en="Tab to navigate · Enter to open · Esc to close" /></p></dialog>
+    <script>import '../scripts/portfolio';</script>
   </body>
 </html>

@@ -18,6 +18,4 @@ export default {
   // card_title: "Información Rápida",
   // card_location: "México / Remoto",
   // card_status: "Disponible para trabajar",
-  // card_cv: "Descargar CV",
-  // card_cv_url: "/Jesús_Armando_Gutiérrez_Nery_-_Desarrollador_Frontend.pdf",
 };
