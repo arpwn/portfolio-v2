@@ -53,6 +53,10 @@ Astro renders the homepage as static HTML. TypeScript handles language switching
 
 Portfolio content lives in `src/data/portfolio.ts`; the main page and its styles are in `src/pages/index.astro` and `src/styles/portfolio.css`. Existing React components remain in the repository.
 
+Selected work starts with professional contributions to SIRI (IMSS) and LYNX / TalentOps (EY GDS), based on the documented experience. RuleCheck is the featured personal demo, with its interface decisions and current scope visible by default. ShiftNote and SpaceX remain secondary explorations; Crypto Market Dashboard and Landing Astro are no longer part of the homepage selection.
+
+Professional cards link to the corresponding experience entry. All new content is available in Spanish and English and follows the existing light and dark themes.
+
 Personal CVs are excluded from public assets and production builds. Contact is available through email and LinkedIn.
 
 ## Why This Project Matters

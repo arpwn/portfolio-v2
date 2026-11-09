@@ -2,7 +2,9 @@
 import '../styles/global.css';
 import '../styles/portfolio.css';
 import T from '../components/Localized.astro';
-import { profile, projects, experiments, experience, education } from '../data/portfolio';
+import { profile, professionalWork, projects, experience, education } from '../data/portfolio';
+const featuredProjects = projects.slice(0, 1);
+const secondaryProjects = projects.slice(1);
 const year = new Date().getFullYear();
 ---
 <!doctype html>
@@ -53,11 +55,12 @@ const year = new Date().getFullYear();
           <p class="eyebrow"><span class="status-dot"></span> FRONT-END DEVELOPER <span class="eyebrow-divider">/</span> CDMX</p>
           <h1 id="hero-title"><T es="Interfaces claras." en="Clear interfaces." /><br /><span class="accent"><T es="Código con intención." en="Purposeful code." /></span></h1>
           <p class="hero-description"><T es="Soy Armando. Desarrollo aplicaciones web empresariales con React, Angular y TypeScript, con foco en componentes reutilizables e interfaces claras." en="I'm Armando. I develop enterprise web applications with React, Angular, and TypeScript, focusing on reusable components and clear interfaces." /></p>
-          <div class="hero-actions"><a class="button button-primary" href="#proyectos"><T es="Explorar proyectos" en="Explore projects" /><span aria-hidden="true">↗</span></a></div>
+          <p class="hero-credentials"><T es="Experiencia frontend en EY GDS e IMSS · Web Publisher en VML para Ford" en="Frontend experience at EY GDS and IMSS · Web Publisher at VML for Ford" /></p>
+          <div class="hero-actions"><a class="button button-primary" href="#proyectos"><T es="Ver trabajo seleccionado" en="View selected work" /><span aria-hidden="true">↗</span></a><a class="button button-secondary" href="#experiencia"><T es="Mi experiencia" en="My experience" /><span aria-hidden="true">↓</span></a></div>
           <div class="hero-socials"><a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a><a href={`mailto:${profile.email}`}>Email <span aria-hidden="true">↗</span></a></div>
         </div>
         <a class="hero-preview" href="#rulecheck" aria-label="RuleCheck — Ver proyecto">
-          <div class="preview-top"><span class="window-dots"><i></i><i></i><i></i></span><span>rulecheck.app</span><span class="preview-arrow" aria-hidden="true">↗</span></div>
+          <div class="preview-top"><span class="window-dots"><i></i><i></i><i></i></span><span>RuleCheck / <T es="proyecto personal" en="personal project" /></span><span class="preview-arrow" aria-hidden="true">↗</span></div>
           <div class="hero-image"><img src="/RuleCheck.png" alt="RuleCheck: formulario de solicitud y panel con nivel de riesgo, motivos y siguiente paso" width="2336" height="1586" fetchpriority="high" /></div>
           <div class="preview-bottom"><span><span class="mini-label"><T es="PROYECTO DESTACADO" en="FEATURED PROJECT" /></span><strong>RuleCheck</strong></span><span class="preview-pill">React + Tailwind</span></div>
           <div class="preview-caption"><span class="status-dot"></span><T es="Del dato a la decisión." en="From data to decision." /></div>
@@ -65,26 +68,44 @@ const year = new Date().getFullYear();
         <div class="hero-footnote"><span><T es="Mi stack de trabajo" en="My working stack" /></span><div><strong>React</strong><span>✳</span><strong>Angular</strong><span>✳</span><strong>TypeScript</strong><span>✳</span><strong>Tailwind CSS</strong><span>✳</span><strong>Astro</strong></div><a href="#proyectos" aria-label="Ir a proyectos">↓</a></div>
       </section>
       <section id="proyectos" class="section wrap" aria-labelledby="projects-title">
-        <div class="section-heading"><div><p class="eyebrow section-index"><span>01 /</span> <T es="TRABAJO SELECCIONADO" en="SELECTED WORK" /></p><h2 id="projects-title"><T es="De la idea a la interfaz." en="From idea to interface." /></h2></div><p class="section-intro"><T es="Proyectos personales para resolver problemas concretos, explorar interfaces y seguir construyendo." en="Personal projects to solve concrete problems, explore interfaces, and keep building." /></p></div>
+        <div class="section-heading"><div><p class="eyebrow section-index"><span>01 /</span> <T es="TRABAJO SELECCIONADO" en="SELECTED WORK" /></p><h2 id="projects-title"><T es="Interfaces para el trabajo real." en="Interfaces for real work." /></h2></div><p class="section-intro"><T es="Contribuciones profesionales con Angular y React, y proyectos personales donde exploro flujos de trabajo e interfaces con datos." en="Professional contributions with Angular and React, alongside personal projects exploring workflows and data interfaces." /></p></div>
+        <div class="work-group-heading"><h3><T es="Contribuciones profesionales" en="Professional contributions" /></h3><p class="mini-label"><T es="DESARROLLO EN EQUIPO" en="TEAM DEVELOPMENT" /></p></div>
+        <div class="professional-work">
+          {professionalWork.map(work => (
+            <article id={work.id} class="work-story" aria-labelledby={`${work.id}-title`}>
+              <div class="work-story-top"><span class="work-company">{work.company}</span><span class="mini-label"><T es="EXPERIENCIA PROFESIONAL" en="PROFESSIONAL EXPERIENCE" /></span></div>
+              <p class="mini-label"><T {...work.category} /></p>
+              <h4 id={`${work.id}-title`}>{work.name}</h4>
+              <p class="work-story-title"><T {...work.title} /></p>
+              <dl class="work-story-description">
+                <dt><T es="Contexto" en="Context" /></dt><dd><T {...work.context} /></dd>
+                <dt><T es="Mi contribución" en="My contribution" /></dt><dd><T {...work.contribution} /></dd>
+              </dl>
+              <ul class="tech-list" aria-label="Tecnologías">{work.tech.map(tech => <li>{tech}</li>)}</ul>
+              <a class="work-story-link" href={`#${work.experienceId}`}><T es={`Ver experiencia en ${work.company}`} en={`View experience at ${work.company}`} /><span aria-hidden="true">↓</span></a>
+            </article>
+          ))}
+        </div>
+        <div class="work-group-heading personal-work-heading"><h3><T es="Proyecto personal destacado" en="Featured personal project" /></h3><p class="mini-label"><T es="DEMO + CÓDIGO" en="LIVE DEMO + SOURCE" /></p></div>
         <div class="selected-projects">
-          {projects.map((project, index) => (
+          {featuredProjects.map((project, index) => (
             <article id={project.id} class:list={['project', { 'project-featured': index === 0 }]}>
               <a class:list={['project-image', `image-${project.id}`]} href={project.demo} target="_blank" rel="noopener noreferrer" aria-label={`${project.name} — Demo`}>
                 <span class="project-number">0{index + 1}</span><img src={project.image} alt={`${project.name} — interfaz del proyecto`} width={project.width} height={project.height} loading="lazy" decoding="async" /><span class="image-link" aria-hidden="true">↗</span>
               </a>
-              <div class="project-body"><p class="mini-label"><T {...project.category} /></p><h3>{project.name}</h3><p class="project-tagline"><T {...project.description} /></p><p class="project-summary"><T {...project.summary} /></p><ul class="tech-list" aria-label="Tecnologías">{project.tech.map(tech => <li>{tech}</li>)}</ul>
+              <div class="project-body"><p class="mini-label"><T {...project.category} /></p><h4 class="project-title">{project.name}</h4><p class="project-tagline"><T {...project.description} /></p><p class="project-summary"><T {...project.summary} /></p><ul class="tech-list" aria-label="Tecnologías">{project.tech.map(tech => <li>{tech}</li>)}</ul>
                 <div class="project-links"><a href={project.demo} target="_blank" rel="noopener noreferrer"><T es="Ver demo" en="Live demo" /><span aria-hidden="true">↗</span></a><a href={project.code} target="_blank" rel="noopener noreferrer"><T es="Código" en="Source code" /><span aria-hidden="true">↗</span></a></div>
-                <details class="case-study"><summary><T es="Detrás del proyecto" en="Behind the project" /><span class="details-plus" aria-hidden="true">+</span></summary><div class="case-content"><h4><T es="El problema" en="The problem" /></h4><p><T {...project.problem} /></p><h4><T es="La solución" en="The solution" /></h4><p><T {...project.solution} /></p><h4><T es="Enfoque de interfaz" en="Interface approach" /></h4><p><T {...project.focus} /></p></div></details>
+                <details class="case-study" open><summary><T es="Decisiones y alcance" en="Decisions and scope" /><span class="details-plus" aria-hidden="true">+</span></summary><div class="case-content"><h5><T es="El problema" en="The problem" /></h5><p><T {...project.problem} /></p><h5><T es="Decisión de interfaz" en="Interface decision" /></h5><p><T {...project.focus} /></p><h5><T es="Alcance de la demo" en="Demo scope" /></h5><p><T {...project.scope!} /></p></div></details>
               </div>
             </article>
           ))}
         </div>
-        <div class="more-projects-heading"><h3><T es="También he construido" en="Also built" /></h3><span class="mini-label">02 <T es="PROYECTOS MÁS" en="MORE PROJECTS" /></span></div>
-        <div class="experiments">{experiments.map(project => <article class="experiment"><a class="experiment-image" href={project.demo} target="_blank" rel="noopener noreferrer" aria-label={`${project.name} — Demo`}><img src={project.image} width={project.width} height={project.height} alt={`${project.name} — interfaz del proyecto`} loading="lazy" decoding="async" /></a><div><p class="mini-label"><T {...project.category} /></p><h3>{project.name}</h3><p><T {...project.summary} /></p><span class="experiment-tech">{project.tech}</span><div class="project-links"><a href={project.demo} target="_blank" rel="noopener noreferrer"><T es="Demo" en="Live demo" /> ↗</a><a href={project.code} target="_blank" rel="noopener noreferrer"><T es="Código" en="Code" /> ↗</a></div></div></article>)}</div>
+        <div class="more-projects-heading"><h3><T es="Otras exploraciones" en="Other explorations" /></h3><span class="mini-label">{String(secondaryProjects.length).padStart(2, '0')} <T es="PROYECTOS PERSONALES" en="PERSONAL PROJECTS" /></span></div>
+        <div class="experiments">{secondaryProjects.map(project => <article id={project.id} class="experiment"><a class="experiment-image" href={project.demo} target="_blank" rel="noopener noreferrer" aria-label={`${project.name} — Demo`}><img src={project.image} width={project.width} height={project.height} alt={`${project.name} — interfaz del proyecto`} loading="lazy" decoding="async" /></a><div><p class="mini-label"><T {...project.category} /></p><h4>{project.name}</h4><p><T {...project.summary} /></p><span class="experiment-tech">{project.tech.join(' / ')}</span><div class="project-links"><a href={project.demo} target="_blank" rel="noopener noreferrer"><T es="Demo" en="Live demo" /> ↗</a><a href={project.code} target="_blank" rel="noopener noreferrer"><T es="Código" en="Code" /> ↗</a></div></div></article>)}</div>
       </section>
       <section id="experiencia" class="section experience-section" aria-labelledby="experience-title"><div class="wrap">
         <div class="section-heading"><div><p class="eyebrow section-index"><span>02 /</span> <T es="EXPERIENCIA PROFESIONAL" en="PROFESSIONAL EXPERIENCE" /></p><h2 id="experience-title"><T es="Código en contextos reales." en="Code in real-world contexts." /></h2></div><p class="section-intro"><T es="Experiencias web para Ford, sistemas institucionales y productos internos, con colaboración internacional." en="Web experiences for Ford, institutional systems, and internal products, with international collaboration." /></p></div>
-        <div class="experience-list">{experience.map((job, index) => <article class="experience-item"><div class="experience-meta"><span class="experience-count">0{index + 1}</span><p class="mini-label"><T {...job.date} /></p><h3>{job.company}</h3></div><div class="experience-detail"><h4><T {...job.role} /></h4><p><T {...job.description} /></p><ul>{job.points.map(point => <li><T {...point} /></li>)}</ul><p class="experience-tech">{job.tech}</p></div></article>)}</div>
+        <div class="experience-list">{experience.map((job, index) => <article id={job.id} class="experience-item"><div class="experience-meta"><span class="experience-count">0{index + 1}</span><p class="mini-label"><T {...job.date} /></p><h3>{job.company}</h3></div><div class="experience-detail"><h4><T {...job.role} /></h4><p><T {...job.description} /></p><ul>{job.points.map(point => <li><T {...point} /></li>)}</ul><p class="experience-tech">{job.tech}</p></div></article>)}</div>
       </div></section>
       <section id="sobre-mi" class="section wrap about-section" aria-labelledby="about-title">
         <div class="about-intro">
