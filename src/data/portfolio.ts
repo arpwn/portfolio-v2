@@ -59,6 +59,28 @@ export const projects = [
     tech: ['React', 'TypeScript', 'API'],
     demo: 'https://spacex-mission-control-delta.vercel.app/', code: 'https://github.com/arpwn/spacex-mission-control',
   },
+  {
+    id: 'crypto', name: 'Crypto Market Dashboard', image: '/CryptoMarket-v2.jpg', width: 1280, height: 1248,
+    category: copy('Proyecto personal · Visualización de datos', 'Personal project · Data visualization'),
+    description: copy('Precio y volumen, con contexto.', 'Price and volume, in context.'),
+    summary: copy('Precio, volumen y variación del periodo con datos de CoinGecko. Filtros de moneda y fechas, gráficas adaptables y recuperación de errores.', 'Price, volume, and period change using CoinGecko data. Currency and date filters, responsive charts, and error recovery.'),
+    problem: copy('Comparar movimientos de mercado requiere relacionar precio, volumen y periodo.', 'Comparing market movements requires relating price, volume, and time range.'),
+    solution: copy('Métricas y gráficas reúnen el contexto del periodo, con filtros disponibles durante la carga y ante errores.', 'Metrics and charts bring together period context, with filters available while loading and on errors.'),
+    focus: copy('Dar espacio a las gráficas, abreviar los ejes y mostrar valores completos en el detalle.', 'Give charts room, abbreviate axes, and show complete values in tooltips.'),
+    tech: ['React', 'TypeScript', 'Recharts'],
+    demo: 'https://crypto-market-dashboard-steel.vercel.app/', code: 'https://github.com/arpwn/crypto-market-dashboard',
+  },
+  {
+    id: 'devlaunch', name: 'DevLaunch', image: '/DevLaunch-v2.jpg', width: 1280, height: 850,
+    category: copy('Proyecto personal · Sitio web', 'Personal project · Website'),
+    description: copy('De una idea a un brief de proyecto.', 'From an idea to a project brief.'),
+    summary: copy('Concepto de estudio web con servicios, proceso y preguntas frecuentes. Un configurador convierte el objetivo del proyecto en un brief descargable.', 'Web studio concept with services, process, and FAQs. A configurator turns the project goal into a downloadable brief.'),
+    problem: copy('Empezar un sitio requiere definir qué debe comunicar y qué necesita hacer su visitante.', 'Starting a website requires defining what it should communicate and what visitors need to do.'),
+    solution: copy('Una propuesta de servicios y un proceso claro llevan a un configurador de brief que funciona en el dispositivo.', 'A service offering and clear process lead to a brief configurator that works on the device.'),
+    focus: copy('Conectar las llamadas a la acción con el siguiente paso y mantener la página adaptable y accesible.', 'Connect calls to action with the next step while keeping the page responsive and accessible.'),
+    tech: ['Astro', 'CSS', 'JavaScript'],
+    demo: 'https://landing-astro-bay.vercel.app/', code: 'https://github.com/arpwn/landing-astro',
+  },
 ];
 export const experience = [
   {
