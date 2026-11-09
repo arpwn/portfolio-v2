@@ -25,6 +25,14 @@ function updateLabels() {
   document.querySelector('#command-dialog nav')?.setAttribute('aria-label', en ? 'Commands' : 'Comandos');
   document.querySelector('.hero-footnote > a')?.setAttribute('aria-label', en ? 'Go to projects' : 'Ir a proyectos');
   document.querySelectorAll('.tech-list').forEach(list => list.setAttribute('aria-label', en ? 'Technologies' : 'Tecnologías'));
+  const demoHosts = new Set(['rulecheck-kappa.vercel.app', 'shiftnote-one.vercel.app', 'spacex-mission-control-delta.vercel.app', 'crypto-market-dashboard-steel.vercel.app', 'landing-astro-bay.vercel.app']);
+  document.querySelectorAll<HTMLAnchorElement>('#proyectos a[href]').forEach(link => {
+    const url = new URL(link.href);
+    if (demoHosts.has(url.hostname)) {
+      url.searchParams.set('lang', en ? 'en' : 'es');
+      link.href = url.href;
+    }
+  });
   document.title = 'Armando Gtz — Front-End Developer';
   document.querySelector('meta[name="description"]')?.setAttribute('content', en ? "Armando Gutiérrez Nery's portfolio. Frontend development with React, Angular, and TypeScript. Projects, professional experience, and contact." : 'Portafolio de Armando Gutiérrez Nery. Desarrollo frontend con React, Angular y TypeScript. Proyectos, experiencia profesional y contacto.');
   document.querySelector('meta[name="theme-color"]')?.setAttribute('content', root.classList.contains('dark') ? '#111014' : '#f8f7fa');
